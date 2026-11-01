@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RicheCode TechStudio</title>
+    <meta
+      name="description"
+      content="Explore selected web projects built by RicheCode TechStudio."
+    />
+    <meta name="theme-color" content="#0b0f17" />
+    <title>RicheCode TechStudio — Selected Projects</title>
 
     <!-- Font Awesome Icons -->
     <link
@@ -14,6 +19,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header>
       <nav class="navbar">
         <!-- Exact Brand Identity Replicated From Logo SVG -->
@@ -184,125 +190,115 @@
           <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
             <li><a href="#portfolio">Projects</a></li>
-            <li><a href="#contact" class="btn mobile-hire-btn">Hire Me</a></li>
+            <li><a href="#contact" class="btn mobile-hire-btn">Get in touch</a></li>
           </ul>
         </details>
 
-        <a href="#contact" class="btn desktop-btn">Hire Me</a>
+        <a href="#contact" class="btn desktop-btn">Get in touch</a>
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <!-- Hero Section -->
       <section id="home" class="hero">
-        <span class="hero-badge">Web Design &amp; Development Studio</span>
-        <h1>Building High-Performance Digital Experiences</h1>
+        <span class="hero-badge">RicheCode TechStudio <span aria-hidden="true">/</span> Project portfolio</span>
+        <h1>A closer look at what I’ve been building.</h1>
         <p>
-          We create sleek, modern, and responsive websites designed to elevate 
-          your digital presence and convert visitors into clients.
+          A selection of web projects, from interactive pages to practical
+          layouts. Explore the work and open a live project to see it for
+          yourself.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn">Get Started</a>
-          <a href="#portfolio" class="btn btn-secondary">Explore Work</a>
+          <a href="#portfolio" class="btn">Explore projects</a>
+          <a href="#about" class="btn btn-secondary">About this portfolio</a>
         </div>
+        <a class="hero-scroll-link" href="#portfolio">
+          Scroll to explore <span aria-hidden="true">↓</span>
+        </a>
       </section>
 
       <!-- About Section -->
       <section id="about" class="about">
-        <h2>About Us</h2>
+        <p class="section-kicker">A little context</p>
+        <h2>Made to be explored.</h2>
         <p>
-          RicheCode TechStudio is a specialized web engineering studio focused on delivering 
-          clean, ultra-fast, and impactful modern web solutions for brands, businesses, 
-          and creative innovators globally.
+          Welcome to the RicheCode TechStudio portfolio. This is where I share
+          selected projects I’ve built. Browse the collection below and follow
+          the links to experience each project.
         </p>
       </section>
 
-      <!-- Services Section -->
-      <section id="services" class="services">
-        <h2>Our Services</h2>
-        <div class="service-cards">
-          <div class="card">
-            <div class="card-icon">
-              <i class="fas fa-palette"></i>
-            </div>
-            <h3>Web Design</h3>
-            <p>Custom, scalable, and responsive UI layouts built tailored to your brand identity.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <i class="fas fa-code"></i>
-            </div>
-            <h3>Web Development</h3>
-            <p>Clean code standards using modern HTML5, CSS3, JavaScript, and React architectures.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">
-              <i class="fas fa-search"></i>
-            </div>
-            <h3>SEO &amp; Performance</h3>
-            <p>Optimized site architecture, fast load metrics, and search engine readiness.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Portfolio Section with Interactive Filters -->
       <section id="portfolio" class="portfolio">
-        <h2>Featured Work</h2>
-        
-        <!-- Filter Controls -->
-        <div class="filter-controls">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="frontend">Frontend &amp; Apps</button>
-          <button class="filter-btn" data-filter="landing">Landing Pages</button>
+        <div class="portfolio-heading">
+          <div>
+            <p class="section-kicker">Selected work</p>
+            <h2>Projects</h2>
+          </div>
+          <p class="portfolio-intro">A selection of current projects.</p>
+        </div>
+
+        <div class="portfolio-toolbar">
+          <div class="filter-controls" role="group" aria-label="Filter projects">
+            <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All projects</button>
+            <button class="filter-btn" type="button" data-filter="frontend" aria-pressed="false">Frontend &amp; apps</button>
+            <button class="filter-btn" type="button" data-filter="landing" aria-pressed="false">Landing pages</button>
+          </div>
+          <p class="project-count" role="status" aria-live="polite">2 projects</p>
         </div>
 
         <div class="portfolio-items">
-          <div class="item" data-category="frontend">
-            <div class="item-header">
-              <span class="category-tag">Frontend App</span>
-              <a
-                href="https://richardahadzi33.github.io/Link-in-Bio-landing-page/"
-                target="_blank"
-                rel="noopener"
-                class="item-link"
-              >
-                Portfolio Hub <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
+          <article class="item project-card" data-category="frontend">
+            <div class="project-cover project-cover-hub" aria-hidden="true">
+              <span class="cover-index">PROJECT 01</span>
+              <span class="cover-title">Your links,<br />in one place.</span>
+              <span class="cover-mark">LINK HUB <span>↗</span></span>
             </div>
-            <p class="item-desc">Interactive link-in-bio landing hub with dark theme aesthetic and responsive design.</p>
-          </div>
+            <div class="project-content">
+              <div class="item-header">
+                <span class="category-tag">Frontend app</span>
+                <span class="project-number">01 / 02</span>
+              </div>
+              <h3>
+                <a
+                  href="https://richardahadzi33.github.io/Link-in-Bio-landing-page/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="item-link"
+                >
+                  Portfolio Hub <span class="visually-hidden">(opens in a new tab)</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
+              </h3>
+              <p class="item-desc">An interactive link-in-bio hub with a dark theme and responsive design.</p>
+            </div>
+          </article>
 
-          <div class="item" data-category="landing">
-            <div class="item-header">
-              <span class="category-tag">Landing Page</span>
-              <a
-                href="https://richardahadzi33.github.io/roger-s-painting-landing-page/"
-                target="_blank"
-                rel="noopener"
-                class="item-link"
-              >
-                Painting Service Page <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
+          <article class="item project-card" data-category="landing">
+            <div class="project-cover project-cover-painting" aria-hidden="true">
+              <span class="cover-index">PROJECT 02</span>
+              <span class="cover-title">A fresh coat.<br />A fresh start.</span>
+              <span class="cover-mark">ROGER’S PAINTING <span>↗</span></span>
             </div>
-            <p class="item-desc">High-converting business landing page structured for professional services.</p>
-          </div>
-
-          <div class="item" data-category="frontend">
-            <div class="item-header">
-              <span class="category-tag">Frontend Template</span>
-              <a
-                href="https://yourproject3.netlify.app"
-                target="_blank"
-                rel="noopener"
-                class="item-link"
-              >
-                Modern Blog Layout <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
+            <div class="project-content">
+              <div class="item-header">
+                <span class="category-tag">Landing page</span>
+                <span class="project-number">02 / 02</span>
+              </div>
+              <h3>
+                <a
+                  href="https://richardahadzi33.github.io/roger-s-painting-landing-page/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="item-link"
+                >
+                  Painting Service Page <span class="visually-hidden">(opens in a new tab)</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
+              </h3>
+              <p class="item-desc">A landing page for Roger’s Painting, structured to present a professional service.</p>
             </div>
-            <p class="item-desc">Clean, content-first typography template designed for articles and blogs.</p>
-          </div>
+          </article>
         </div>
       </section>
 
@@ -310,10 +306,11 @@
       <section id="contact" class="contact">
         <div class="contact-container">
           <div class="contact-info">
-            <h2>Let's build something brilliant together.</h2>
+            <p class="section-kicker">Get in touch</p>
+            <h2>Want to talk about a project?</h2>
             <p class="contact-subtitle">
-              Ready to elevate your digital presence? Reach out and let's
-              discuss your project goals.
+              Send a note using the form, or reach out directly using the
+              contact details below.
             </p>
 
             <div class="info-meta">
@@ -354,7 +351,8 @@
                   type="text"
                   id="name"
                   name="name"
-                  placeholder="John Doe"
+                  autocomplete="name"
+                  placeholder="Your name"
                   required
                 />
               </div>
@@ -365,7 +363,8 @@
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="john@example.com"
+                  autocomplete="email"
+                  placeholder="you@example.com"
                   required
                 />
               </div>
@@ -376,7 +375,7 @@
                   id="message"
                   name="message"
                   rows="4"
-                  placeholder="Tell us briefly about your business website needs..."
+                  placeholder="What would you like to talk about?"
                   required
                 ></textarea>
               </div>
@@ -384,6 +383,7 @@
               <button type="submit" class="btn form-submit">
                 Send Message
               </button>
+              <p class="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
             </form>
           </div>
         </div>
@@ -394,10 +394,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="logo">RicheCode</div>
-          <p>
-            Building high-performance, beautiful digital experiences for modern
-            brands.
-          </p>
+          <p>A home for selected projects by RicheCode TechStudio.</p>
         </div>
 
         <div class="footer-links-group">
@@ -405,8 +402,8 @@
           <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
             <li><a href="#portfolio">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
 
@@ -443,8 +440,7 @@
 
       <div class="footer-bottom">
         <p class="footer-tagline">
-          RicheCode TechStudio — Transforming bold ideas into high-performance
-          digital realities.
+          RicheCode TechStudio — Selected projects.
         </p>
         <p class="footer-copyright">
           &copy; 2026 RicheCode TechStudio. All rights reserved.

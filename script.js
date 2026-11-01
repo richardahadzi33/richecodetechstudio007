@@ -13,24 +13,28 @@ document.addEventListener("DOMContentLoaded", () => {
     threshold: 0.15,
   };
 
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-        observer.unobserve(entry.target); // Animate once per element
-      }
+  if (
+    "IntersectionObserver" in window &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll(
+      "section h2, .project-card, .contact-container > *"
+    );
+
+    revealElements.forEach((el) => {
+      el.classList.add("reveal");
+      revealObserver.observe(el);
     });
-  }, observerOptions);
-
-  // Targets h2 elements, cards, and portfolio items across the page
-  const revealElements = document.querySelectorAll(
-    "section h2, .card, .portfolio .item, .contact-container > *"
-  );
-
-  revealElements.forEach((el) => {
-    el.classList.add("reveal");
-    revealObserver.observe(el);
-  });
+  }
 
   /* ------------------------------------------------------------------------
      2. PORTFOLIO PROJECT FILTERING SYSTEM
@@ -43,27 +47,33 @@ document.addEventListener("DOMContentLoaded", () => {
     filterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         // Active button highlight state
-        filterBtns.forEach((b) => b.classList.remove("active"));
+        filterBtns.forEach((b) => {
+          b.classList.remove("active");
+          b.setAttribute("aria-pressed", "false");
+        });
         btn.classList.add("active");
+        btn.setAttribute("aria-pressed", "true");
 
         const filterValue = btn.getAttribute("data-filter");
+        let visibleCount = 0;
 
         portfolioItems.forEach((item) => {
           const category = item.getAttribute("data-category");
 
           if (filterValue === "all" || category === filterValue) {
-            item.style.display = "block";
-            // Re-trigger visual entry state
-            setTimeout(() => {
-              item.style.opacity = "1";
-              item.style.transform = "translateY(0)";
-            }, 10);
+            item.hidden = false;
+            visibleCount += 1;
           } else {
-            item.style.opacity = "0";
-            item.style.transform = "translateY(20px)";
-            item.style.display = "none";
+            item.hidden = true;
           }
         });
+
+        const projectCount = document.querySelector(".project-count");
+        if (projectCount) {
+          projectCount.textContent = `${visibleCount} ${
+            visibleCount === 1 ? "project" : "projects"
+          }`;
+        }
       });
     });
   }
@@ -79,11 +89,12 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const submitBtn = contactForm.querySelector(".form-submit");
+      const formStatus = contactForm.querySelector(".form-status");
       const originalText = submitBtn.innerText;
 
-      // Update button state while sending
       submitBtn.innerText = "SENDING MESSAGE...";
       submitBtn.disabled = true;
+      formStatus.textContent = "Sending your message…";
 
       const formData = new FormData(contactForm);
 
@@ -98,32 +109,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (response.ok) {
-          submitBtn.innerText = "MESSAGE SENT SUCCESSFULLY!";
-          submitBtn.style.backgroundColor = "#22c55e"; // Success green highlight
-          submitBtn.style.color = "#ffffff";
+          formStatus.textContent = "Thanks — your message has been sent.";
           contactForm.reset();
-
-          // Reset button state after 4 seconds
-          setTimeout(() => {
-            submitBtn.innerText = originalText;
-            submitBtn.style.backgroundColor = "";
-            submitBtn.style.color = "";
-            submitBtn.disabled = false;
-          }, 4000);
         } else {
-          throw new Error("Form submission error");
+          throw new Error(`Form submission failed with status ${response.status}`);
         }
       } catch (error) {
-        submitBtn.innerText = "FAILED TO SEND. TRY AGAIN";
-        submitBtn.style.backgroundColor = "#ef4444"; // Error red highlight
-        submitBtn.style.color = "#ffffff";
-
-        setTimeout(() => {
-          submitBtn.innerText = originalText;
-          submitBtn.style.backgroundColor = "";
-          submitBtn.style.color = "";
-          submitBtn.disabled = false;
-        }, 4000);
+        console.error("Unable to send contact form:", error);
+        formStatus.textContent =
+          "Your message could not be sent. Please try again or email directly.";
+      } finally {
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
       }
     });
   }
